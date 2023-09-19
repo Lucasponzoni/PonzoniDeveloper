@@ -24,6 +24,8 @@ main {
 
   .titulo {
 
+    margin-top: 5rem;
+
     @include tablet{
       display: flex;
       flex-wrap: wrap;

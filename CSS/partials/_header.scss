@@ -4,11 +4,18 @@ header {
   align-items: center;
   justify-content: center;
   background-color: $maincolor;
+  backdrop-filter: blur(10px);
   margin-bottom: 3rem;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
 
   @include desktop {
     flex-direction: column;
     gap: 0;
+    position: unset;
+    backdrop-filter: none;
   }
 
   .abrir-menu{
@@ -72,6 +79,46 @@ header {
     justify-content: space-between;
     flex: 1;
 
+    .dev::before {
+      content: '<';
+      margin-inline: .1rem;
+      color: #fff;
+      display: inline-block;
+      transition: color .2s, transform .1s .2s;
+
+      @include desktop{
+        color: $secondarycolor;
+      }
+  }
+  
+  .dev::after {
+      content: '/>';
+      margin-inline: .1rem;
+      color: #fff;
+      display: inline-block;
+      transition: color .2s, transform .1s .2s;
+
+      @include desktop{
+        color: $secondarycolor;
+      }
+  }
+  
+  @media (hover: hover) {
+    .dev:hover {
+        color: $secondarycolor;
+    }
+  
+    .dev:hover::before {
+        color: $secondarycolor;
+        transform: translateX(-.5rem);
+    }
+  
+    .dev:hover::after {
+        color: $secondarycolor;
+        transform: translateX(.5rem);
+    }
+  }
+
     &.visible {
       opacity: 1;
       visibility: visible;
@@ -96,11 +143,7 @@ header {
       padding: 0rem;
       justify-content: flex-start;
       z-index: 2;
-      transition: opacity .5s;
-    }
-
-    #active {
-      text-decoration: underline 3px $secondarycolor;
+      transition: opacity 1s;
     }
 
     .social_media {
